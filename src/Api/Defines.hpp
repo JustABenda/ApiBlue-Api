@@ -1,3 +1,4 @@
+#pragma once
 //Request from user
 #define REQUEST_CALL '0'
 #define REQUEST_INFO '1'

@@ -23,9 +23,8 @@ void setup() {
   DatabaseHandler::Log("2023-02-01 00:00", values);
   DatabaseHandler::Log("2023-02-01 00:00", values);
   DatabaseHandler::Log("2023-02-01 00:00", values);*/
-  Serial.println(DatabaseHandler::Select("01-01-2000 00:00", "31-12-2025 23:59", 150).c_str());
-  /*ConnectorBLE::Init();
-  ConnectorBLE::SetData("Battery_in.%.green;Temperature_in.°C.red;Temperature_out.°C.orange;Humidity_in.%.blue;Humidity_out.%.aqua");*/
+  ConnectorBLE::Init();
+  ConnectorBLE::SetData("Battery_in.%.green;Temperature_in.°C.red;Temperature_out.°C.orange;Humidity_in.%.blue;Humidity_out.%.aqua");
 }
 
 void loop() {

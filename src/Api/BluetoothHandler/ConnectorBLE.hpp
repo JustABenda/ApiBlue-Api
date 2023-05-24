@@ -7,6 +7,8 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include "../Database/DatabaseHandler.hpp"
+#include "../Helper.hpp"
 
 #define DEBUG_LOG 1
 
@@ -43,6 +45,8 @@ public:
         return 0;
     }
     static void SendData(std::string data);
+    static void SendData_(std::string prefix);
+    static void SendRequestedData(std::string date_from, std::string date_to, int position);
     static BLECharacteristic *pCharacteristic;
     
     class MyCallbacks: public BLECharacteristicCallbacks
@@ -52,6 +56,8 @@ public:
     };
     static std::string MakeCommand(char prefix, const char* args);
 private:
+    static bool old_message_sent;
     static char* BuildData();
     static std::string vars;
+    static char char_buffer[600];
 };
