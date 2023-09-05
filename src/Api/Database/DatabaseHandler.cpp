@@ -187,7 +187,7 @@ int DatabaseHandler::Select(std::string date_from, std::string date_to, int posi
                 replace(data, "000", "0");
                 replace(data, "000", "0");
                 strcat(buffer, data.c_str());
-                strcat(buffer, ".");
+                strcat(buffer, "-");
             }
             std::string data = "";
             data = (std::string)(const char *)sqlite3_column_text(DatabaseHandler::resource, count);

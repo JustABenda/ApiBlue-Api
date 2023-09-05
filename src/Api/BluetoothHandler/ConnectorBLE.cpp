@@ -50,7 +50,7 @@ void ConnectorBLE::MyCallbacks::onWrite(BLECharacteristic *pCharacteristic)
 {
     std::string value = pCharacteristic->getValue();
     char command = value.at(0);
-    std::string data = value.substr(1, data.length());
+    std::string data = value.substr(1, value.length());
     if (value.length() > 0)
     {
         switch (command)
@@ -80,11 +80,17 @@ void ConnectorBLE::MyCallbacks::onWrite(BLECharacteristic *pCharacteristic)
         }
         if (command == REQUEST_DATA)
         {
-            std::string from_date = Helper::split(data.c_str(), ';')[0];
-            std::string to_date = Helper::split(data.c_str(), ';')[1];
-            int pos = std::atoi(Helper::split(data.c_str(), ';')[2].c_str());
-            ConnectorBLE::SendRequestedData(from_date, to_date, pos);
-            // SendData(MakeCommand(RESPONSE_DATA, "Temperature_in:25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5;Temperature_out:23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5,23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5;Humidity_in:25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5;Humidity_out:23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5,23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5;Battery_in:0,15,30,45,60,70,80,30,45,60,70,80,0,15,30,45,60,70,80,30,45,60,70,80"));
+            if (data == "last")
+            {
+            }
+            else
+            {
+                std::string from_date = Helper::split(data.c_str(), ';')[0];
+                std::string to_date = Helper::split(data.c_str(), ';')[1];
+                int pos = std::atoi(Helper::split(data.c_str(), ';')[2].c_str());
+                ConnectorBLE::SendRequestedData(from_date, to_date, pos);
+                // SendData(MakeCommand(RESPONSE_DATA, "Temperature_in:25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5;Temperature_out:23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5,23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5;Humidity_in:25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.3,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5,25.5;Humidity_out:23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5,23.5,22.3,23.5,22.5,23.5,22.5,23.5,23.5,22.5,23.5,22.5,23.5;Battery_in:0,15,30,45,60,70,80,30,45,60,70,80,0,15,30,45,60,70,80,30,45,60,70,80"));
+            }
         }
     }
 }
@@ -100,7 +106,8 @@ void ConnectorBLE::SendData_(std::string prefix)
 }
 void ConnectorBLE::SendRequestedData(std::string date_from, std::string date_to, int position)
 {
-    Serial.print("Position: ");Serial.println(position);
+    Serial.print("Position: ");
+    Serial.println(position);
     memset(char_buffer, 0, 600);
     int delay_time = (int)(20.0f * position + 160.5789f);
     if (position == 0)

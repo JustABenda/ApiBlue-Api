@@ -24,7 +24,7 @@ void setup() {
   DatabaseHandler::Log("2023-02-01 00:00", values);
   DatabaseHandler::Log("2023-02-01 00:00", values);*/
   ConnectorBLE::Init();
-  ConnectorBLE::SetData("Battery_in.%.green;Temperature_in.°C.red;Temperature_out.°C.orange;Humidity_in.%.blue;Humidity_out.%.aqua");
+  ConnectorBLE::SetData("Temperature_out.°C;Temperature_in.°C.red.orange;Humidity_in.%.blue;Mass_in.kg.aqua;Battery_in.%.green");
 }
 
 void loop() {
