@@ -6,12 +6,14 @@
 #define REQUEST_FREE '3'
 #define REQUEST_WARE '4'
 #define REQUEST_VARS '5'
+#define REQUEST_LAST '6'
 //Responses from device
 #define RESPONSE_CALL '0'
 #define RESPONSE_INFO '1'
 #define RESPONSE_DATA '2'
 #define RESPONSE_WARE '3'
 #define RESPONSE_VARS '4'
+#define RESPONSE_LAST '5'
 
 /*
 //////Data Format//////
@@ -21,6 +23,7 @@ Requests:
     reqdata 0x2 - Get device data (var (0xX), from, to)
     reqfree 0x3 - Custom request
     reqware 0x4 - Get firmware version
+    reqlast 0x5 - Request last data
 Repsonses:
     respcall 0x0 - Empty
     respinfo 0x1 - Send basic device info

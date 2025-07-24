@@ -2,6 +2,7 @@
 
 BLECharacteristic *ConnectorBLE::pCharacteristic;
 std::string ConnectorBLE::vars = "";
+std::string ConnectorBLE::last_data = "";
 bool ConnectorBLE::old_message_sent = true;
 char ConnectorBLE::char_buffer[600];
 int ConnectorBLE::Init()
@@ -74,6 +75,9 @@ void ConnectorBLE::MyCallbacks::onWrite(BLECharacteristic *pCharacteristic)
             break;
         case REQUEST_VARS:
             SendData(MakeCommand(RESPONSE_VARS, vars.c_str()));
+            break;
+        case REQUEST_LAST:
+            SendData(MakeCommand(RESPONSE_LAST, last_data.c_str()));
             break;
         default:
             break;

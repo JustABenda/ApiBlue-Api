@@ -6,6 +6,7 @@ const char *DatabaseHandler::tail;
 std::string *DatabaseHandler::varlist;
 const char *DatabaseHandler::data = "Callback function called";
 int DatabaseHandler::count = 0;
+
 bool replace(std::string& str, const std::string& from, const std::string& to) {
     size_t start_pos = str.find(from);
     if(start_pos == std::string::npos)
@@ -187,7 +188,7 @@ int DatabaseHandler::Select(std::string date_from, std::string date_to, int posi
                 replace(data, "000", "0");
                 replace(data, "000", "0");
                 strcat(buffer, data.c_str());
-                strcat(buffer, "-");
+                strcat(buffer, "/");
             }
             std::string data = "";
             data = (std::string)(const char *)sqlite3_column_text(DatabaseHandler::resource, count);

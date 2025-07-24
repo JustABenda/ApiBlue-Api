@@ -39,6 +39,7 @@ Response Args:
 */
 class ConnectorBLE{
 public:
+    static std::string last_data;
     static int Init();
     static int SetData(std::string newdata);
     static int ReceiveData(){
